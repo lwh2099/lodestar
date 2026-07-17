@@ -9,6 +9,7 @@
 ![No API keys](https://img.shields.io/badge/API%20keys-none-2478B8)
 
 ![Lodestar — Regime Compass](docs/screenshot.png)
+![Lodestar — Regime Compass](docs/screenshot_2.png)
 
 A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only.
 
