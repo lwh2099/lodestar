@@ -1,6 +1,4 @@
 # Lodestar
-
-<<<<<<< HEAD
 > Self-hosted macro & equity research dashboard in pure Python — regime, market
 > internals, sentiment, seasonality & thematic stock screening.
 
@@ -11,15 +9,9 @@
 ![No API keys](https://img.shields.io/badge/API%20keys-none-2478B8)
 
 ![Lodestar — Regime Compass](docs/screenshot.png)
+![Lodestar — Regime Compass](docs/screenshot_2.png)
 
-A self-hosted macro + equity dashboard: real-time market internals layered on
-official historical macro series, a rule-based regime state machine, a
-contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots
-multi-theme stock cross-section engine. Pure Python, free data sources only,
-warm-minimal design.
-=======
-A self-hosted macro + equity dashboard by Streamlit.
->>>>>>> d8669349f78f4f440a368ccc90fef451c1ac82df
+A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only.
 
 ## Quick start
 
