@@ -1,0 +1,80 @@
+# FRED series registry.
+# Add a series here and it automatically appears on the Macro page and in
+# the nightly refresh script. No code changes needed.
+#
+# Fields per series:
+#   name       display name
+#   category   one of the categories declared at the bottom of this file
+#   freq       D / W / M / Q  (drives the default cache TTL)
+#   units      display suffix ("%", "pp", "k", "mn", "$bn", "$tn", "")
+#   scale      multiply raw values before display (default 1)
+#   transform  level (default) | yoy | mom_diff  -> what pages chart and quote
+#   decimals   display decimals (default 2)
+#   good_when  up | down | none  -> delta colour on metric tiles (default none)
+#   ttl_hours  cache time-to-live override (defaults: D=12h, W/M/Q=24h)
+#   hidden     exclude from the Macro page (still fetchable, e.g. USREC)
+
+series:
+  # --- Rates & Yield Curve ---------------------------------------------
+  DFF:      {name: "Effective Fed Funds Rate", category: rates, freq: D, units: "%"}
+  FEDFUNDS: {name: "Fed Funds Rate (Monthly Avg)", category: rates, freq: M, units: "%"}
+  DGS3MO:   {name: "3-Month Treasury Yield", category: rates, freq: D, units: "%"}
+  DGS2:     {name: "2-Year Treasury Yield", category: rates, freq: D, units: "%"}
+  DGS10:    {name: "10-Year Treasury Yield", category: rates, freq: D, units: "%"}
+  DGS30:    {name: "30-Year Treasury Yield", category: rates, freq: D, units: "%"}
+  T10Y2Y:   {name: "10Y-2Y Spread", category: rates, freq: D, units: "pp", good_when: up}
+  T10Y3M:   {name: "10Y-3M Spread", category: rates, freq: D, units: "pp", good_when: up}
+
+  # --- Inflation ---------------------------------------------------------
+  CPIAUCSL: {name: "CPI (YoY)", category: inflation, freq: M, units: "%", transform: yoy, good_when: down, decimals: 1}
+  CPILFESL: {name: "Core CPI (YoY)", category: inflation, freq: M, units: "%", transform: yoy, good_when: down, decimals: 1}
+  PCEPI:    {name: "PCE Inflation (YoY)", category: inflation, freq: M, units: "%", transform: yoy, good_when: down, decimals: 1}
+  PCEPILFE: {name: "Core PCE (YoY)", category: inflation, freq: M, units: "%", transform: yoy, good_when: down, decimals: 1}
+  T5YIE:    {name: "5Y Breakeven Inflation", category: inflation, freq: D, units: "%", good_when: down}
+  T10YIE:   {name: "10Y Breakeven Inflation", category: inflation, freq: D, units: "%", good_when: down}
+
+  # --- Labor --------------------------------------------------------------
+  UNRATE:  {name: "Unemployment Rate", category: labor, freq: M, units: "%", good_when: down, decimals: 1}
+  PAYEMS:  {name: "Nonfarm Payrolls (MoM Change)", category: labor, freq: M, units: "k", transform: mom_diff, decimals: 0, good_when: up}
+  JTSJOL:  {name: "JOLTS Job Openings", category: labor, freq: M, units: "mn", scale: 0.001, good_when: up}
+  ICSA:    {name: "Initial Jobless Claims", category: labor, freq: W, units: "k", scale: 0.001, decimals: 0, good_when: down}
+  CCSA:    {name: "Continuing Claims", category: labor, freq: W, units: "mn", scale: 0.000001, good_when: down}
+
+  # --- Growth & Activity ---------------------------------------------------
+  GDPC1:   {name: "Real GDP (YoY)", category: growth, freq: Q, units: "%", transform: yoy, good_when: up, decimals: 1}
+  GDPNOW:  {name: "Atlanta Fed GDPNow", category: growth, freq: Q, units: "%", ttl_hours: 12, good_when: up, decimals: 1}
+  INDPRO:  {name: "Industrial Production (YoY)", category: growth, freq: M, units: "%", transform: yoy, good_when: up, decimals: 1}
+  IPMAN:   {name: "Manufacturing Output (YoY)", category: growth, freq: M, units: "%", transform: yoy, good_when: up, decimals: 1}
+  GACDFSA066MSFRBPHI: {name: "Philly Fed Manufacturing Index", category: growth, freq: M, units: "", good_when: up, decimals: 1}
+
+  # --- Financial Conditions & Liquidity ------------------------------------
+  NFCI:      {name: "Chicago Fed NFCI", category: conditions, freq: W, units: "", good_when: down}
+  ANFCI:     {name: "Adjusted NFCI", category: conditions, freq: W, units: "", good_when: down}
+  WALCL:     {name: "Fed Balance Sheet", category: conditions, freq: W, units: "$tn", scale: 0.000001, decimals: 2}
+  M2SL:      {name: "M2 Money Supply (YoY)", category: conditions, freq: M, units: "%", transform: yoy, decimals: 1}
+  RRPONTSYD: {name: "Overnight Reverse Repo", category: conditions, freq: D, units: "$bn", decimals: 0}
+  WTREGEN:   {name: "Treasury General Account", category: conditions, freq: W, units: "$bn", decimals: 0}
+
+  # --- Credit Spreads --------------------------------------------------------
+  BAMLH0A0HYM2: {name: "High Yield OAS", category: credit, freq: D, units: "%", good_when: down}
+  BAMLC0A0CM:   {name: "Investment Grade OAS", category: credit, freq: D, units: "%", good_when: down}
+  BAA10Y:       {name: "Baa Corporate - 10Y Spread", category: credit, freq: D, units: "pp", good_when: down}
+
+  # --- Housing & Consumer ---------------------------------------------------
+  HOUST:   {name: "Housing Starts", category: housing_consumer, freq: M, units: "k", decimals: 0, good_when: up}
+  PERMIT:  {name: "Building Permits", category: housing_consumer, freq: M, units: "k", decimals: 0, good_when: up}
+  UMCSENT: {name: "U. Michigan Consumer Sentiment", category: housing_consumer, freq: M, units: "", decimals: 1, good_when: up}
+  RSAFS:   {name: "Retail Sales (YoY)", category: housing_consumer, freq: M, units: "%", transform: yoy, good_when: up, decimals: 1}
+  LFWA64TTUSM647S: {name: "Working-Age Population (YoY)", category: housing_consumer, freq: M, units: "%", transform: yoy, decimals: 2}
+
+  # --- Utility series (not displayed directly) -------------------------------
+  USREC: {name: "NBER Recession Indicator", category: growth, freq: M, units: "", hidden: true, ttl_hours: 168}
+
+categories:
+  rates:            {label: "Rates & Curve", order: 1}
+  inflation:        {label: "Inflation", order: 2}
+  labor:            {label: "Labor", order: 3}
+  growth:           {label: "Growth & Activity", order: 4}
+  conditions:       {label: "Conditions & Liquidity", order: 5}
+  credit:           {label: "Credit Spreads", order: 6}
+  housing_consumer: {label: "Housing & Consumer", order: 7}

@@ -1,0 +1,35 @@
+# Regime state machine thresholds and sentiment weights.
+# Every value here is read at runtime — edit and refresh the app to re-score.
+
+monetary:
+  nfci_easing: -0.10        # NFCI below this -> easing conditions
+  nfci_tightening: 0.10     # NFCI above this -> tightening conditions
+  dff_confirm_pp: 0.10      # 3-month Fed funds move (pp) that confirms direction
+  dgs2_confirm_pp: 0.15     # 1-month 2Y yield move (pp) that confirms direction
+  score_easing: -0.5        # composite score at/below -> Easing
+  score_tightening: 0.5     # composite score at/above -> Tightening
+
+growth:
+  gdpnow_strong: 1.5        # GDPNow above this -> expansion signal
+  gdpnow_weak: 0.0          # GDPNow below this -> contraction signal
+  icsa_rise_pct: 3.0        # 4-wk avg claims up more than this vs prior month -> deterioration
+  icsa_fall_pct: 3.0        # 4-wk avg claims down more than this -> improvement
+  payems_slowdown_k: 25     # 3-month avg payroll gain slowing by more (k) -> deterioration
+  score_expansion: 1.5      # composite score at/above -> Expansion
+  score_contraction: -1.5   # composite score at/below -> Contraction
+
+risk:
+  vix_calm: 15.0
+  vix_stress: 25.0
+  hy_oas_complacent: 3.5    # HY OAS (%) below -> complacent / risk-on
+  hy_oas_stress: 5.0        # HY OAS (%) above -> stress / risk-off
+  score_risk_on: 1.0
+  score_risk_off: -1.0
+
+sentiment:
+  # The concluded thermometer is the CNN Fear & Greed contrarian reading. CNN's
+  # index already embeds VIX (it's one of its 7 factors), so VIX is not blended
+  # in again — it's kept only as a context reading and as a fallback when the CNN
+  # scrape is down. The floor/ceiling below map VIX to its 0-100 sub-score.
+  vix_floor: 10.0           # VIX at/below -> component score 0 (max complacency)
+  vix_ceiling: 40.0         # VIX at/above -> component score 100 (max fear)

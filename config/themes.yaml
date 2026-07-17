@@ -1,0 +1,151 @@
+# Granny Shots theme configuration (2026-02 vintage).
+#
+# The candidate universe is the union of every ticker below (sector pools +
+# theme member lists). Edit any list, save, and hit "Refresh" in the app —
+# the cross-section engine recomputes immediately.
+#
+# Theme kinds:
+#   static       fixed member list, always active
+#   dynamic      members computed from market data at runtime
+#   conditional  member list activates only when its macro trigger fires
+
+# Large-cap pools grouped by SPDR sector ETF. Used two ways:
+#   1) as the backbone of the candidate universe,
+#   2) by the Seasonality theme (top sectors for the current month).
+sector_pools:
+  XLK:  [AAPL, MSFT, NVDA, AVGO, CRM, ORCL, AMD, ADBE, QCOM, TXN, AMAT, MU]
+  XLC:  [GOOGL, META, NFLX, DIS, TMUS, CMCSA]
+  XLY:  [AMZN, TSLA, HD, MCD, NKE, SBUX, LOW, BKNG]
+  XLP:  [PG, KO, PEP, COST, WMT, MDLZ, CL]
+  XLV:  [UNH, JNJ, LLY, PFE, MRK, ABBV, TMO, ABT]
+  XLF:  [JPM, BAC, WFC, GS, MS, BLK, SCHW, AXP, V, MA]
+  XLI:  [CAT, DE, HON, UNP, UPS, BA, GE, ETN, EMR]
+  XLE:  [XOM, CVX, COP, SLB, EOG, PSX, MPC]
+  XLB:  [LIN, APD, FCX, NUE, DOW, SHW]
+  XLU:  [NEE, DUK, SO, D, AEP, EXC]
+  XLRE: [PLD, AMT, EQIX, SPG, O]
+
+sector_names:
+  XLK: Technology
+  XLC: Communication Services
+  XLY: Consumer Discretionary
+  XLP: Consumer Staples
+  XLV: Health Care
+  XLF: Financials
+  XLI: Industrials
+  XLE: Energy
+  XLB: Materials
+  XLU: Utilities
+  XLRE: Real Estate
+
+themes:
+  style_tilt:
+    label: "Style Tilt"
+    kind: dynamic
+    description: >-
+      Leadership judged from IWD/IWF (value vs growth) and IWM/IWF
+      (small vs large) 3-month relative strength; the winning style's
+      pool becomes the member list.
+    pools:
+      value:  [BRK-B, JPM, XOM, CVX, JNJ, PG, BAC, WFC, CAT, GS, PFE, KO]
+      growth: [NVDA, MSFT, AAPL, AMZN, META, GOOGL, AVGO, TSLA, CRM, AMD, NFLX, ADBE]
+      smallcap: [CROX, ANF, DUOL, TOST, HIMS, ELF, SOFI]
+
+  seasonality:
+    label: "Seasonality"
+    kind: dynamic
+    description: >-
+      Sector ETFs with the best historical average return in the current
+      calendar month; their sector pools become the member list.
+    top_sectors: 3
+
+  pmi_recovery:
+    label: "PMI Recovery"
+    kind: static
+    description: "Manufacturing, industrial and semiconductor cycle beneficiaries."
+    members: [CAT, DE, HON, ETN, EMR, GE, PH, ROK, FCX, NUE, NVDA, AMD, TXN, QCOM, AMAT, LRCX, KLAC, MU, INTC, ADI]
+
+  millennials:
+    label: "Millennials & Gen-Z"
+    kind: static
+    description: "Digital-native consumption, fintech and lifestyle brands."
+    members: [AMZN, META, NFLX, SPOT, ABNB, UBER, DASH, XYZ, PYPL, SHOP, COIN, RBLX, DUOL, NKE, LULU, ELF, HIMS, CMG]
+
+  ai_labor:
+    label: "Global Labor Supply (AI)"
+    kind: static
+    description: "AI-as-labor: compute, models, automation and infrastructure."
+    members: [NVDA, MSFT, GOOGL, META, AMD, AVGO, TSM, ASML, PLTR, NOW, CRM, SNOW, DDOG, ANET, VRT, SMCI, MRVL, ORCL]
+
+  energy_cyber:
+    label: "Energy & Cybersecurity"
+    kind: static
+    description: "Energy security plus cybersecurity spend."
+    members: [XOM, CVX, COP, SLB, EOG, GEV, VST, CEG, NEE, PANW, CRWD, FTNT, ZS, S, OKTA, CYBR, NET]
+
+  easing_fin_conditions:
+    label: "Easing Fin. Conditions"
+    kind: conditional
+    trigger: "NFCI < 0"
+    description: >-
+      Rate-sensitive, high-beta growth that historically outperforms when
+      financial conditions are loose. Active only while NFCI < 0.
+    members: [SHOP, XYZ, ROKU, PLTR, COIN, SNOW, NET, DDOG, MDB, U, RBLX, AFRM, HOOD, SOFI, TOST, Z]
+
+# Sector labels for tickers that are not covered by sector_pools above.
+extra_sectors:
+  BRK-B: Financials
+  SPOT: Communication Services
+  ABNB: Consumer Discretionary
+  UBER: Industrials
+  DASH: Consumer Discretionary
+  XYZ: Financials
+  PYPL: Financials
+  SHOP: Technology
+  COIN: Financials
+  RBLX: Communication Services
+  DUOL: Technology
+  LULU: Consumer Discretionary
+  ELF: Consumer Staples
+  HIMS: Health Care
+  CMG: Consumer Discretionary
+  TSM: Technology
+  ASML: Technology
+  PLTR: Technology
+  NOW: Technology
+  SNOW: Technology
+  DDOG: Technology
+  ANET: Technology
+  VRT: Industrials
+  SMCI: Technology
+  MRVL: Technology
+  PANW: Technology
+  CRWD: Technology
+  FTNT: Technology
+  ZS: Technology
+  S: Technology
+  OKTA: Technology
+  CYBR: Technology
+  NET: Technology
+  GEV: Industrials
+  VST: Utilities
+  CEG: Utilities
+  PH: Industrials
+  ROK: Industrials
+  LRCX: Technology
+  KLAC: Technology
+  INTC: Technology
+  ADI: Technology
+  ROKU: Communication Services
+  MDB: Technology
+  U: Technology
+  AFRM: Financials
+  HOOD: Financials
+  SOFI: Financials
+  TOST: Technology
+  Z: Real Estate
+  CROX: Consumer Discretionary
+  ANF: Consumer Discretionary
+
+# Rebalance: first weekday of January, April, July and October.
+rebalance_months: [1, 4, 7, 10]
