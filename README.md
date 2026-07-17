@@ -1,6 +1,6 @@
 # Lodestar
 
-A self-hosted macro + equity dashboard: check them all in one dashboard.
+A self-hosted macro + equity dashboard by Streamlit.
 
 ## Quick start
 
