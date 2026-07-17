@@ -10,7 +10,7 @@
 
 ![Lodestar — Regime Compass](docs/screenshot.png)
 
-A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only, warm-minimal design.
+A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only.
 
 ## Quick start
 
