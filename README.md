@@ -30,9 +30,9 @@ The first visit to each page downloads its data (FRED history can take
 | Page | What it answers |
 |---|---|
 | **Regime Compass** | Where are we in the cycle? Three regime pills (monetary / growth / risk), a one-line playbook, market snapshot, key macro prints. |
-| **Macro** | Full-history official series: rates & curve, inflation, labor, growth, financial conditions & liquidity, credit, housing & consumer. NBER recession shading. |
+| **Macro** | Full-history official series: rates & curve, inflation, labor, growth, financial conditions & liquidity, credit, housing & consumer. |
 | **Market** | Indices, volatility, sector rotation heatmap, style/factor relative strength, commodities, dollar, bonds. |
-| **Sentiment** | 0–100 contrarian thermometer from VIX + CNN Fear & Greed, with adjustable weights. |
+| **Sentiment** | VIX + CNN Fear & Greed|
 | **Granny Shots** | 7 themes vote on a curated universe; names hit by ≥2 themes form an equal-weight portfolio, rebalanced quarterly. Hit matrix, sector split, theme overlap, CSV export. |
 | **Seasonality** | Monthly / weekday / presidential-cycle patterns from ~100 years of S&P 500 history, with today's calendar position highlighted. |
 
