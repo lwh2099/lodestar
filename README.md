@@ -30,12 +30,12 @@ The first visit to each page downloads its data (FRED history can take
 
 | Page | What it answers |
 |---|---|
-| **Regime Compass** | Where are we in the cycle? Three rule-based regime tags — monetary (easing / tightening), growth (expansion / slowing / contraction), risk appetite (risk-on / risk-off) — plus a curve-inversion flag, rule-by-rule detail, and a historical trend of the composite scores. |
+| **Regime Compass** | Where are we in the cycle? Three rule-based regime tags — monetary (easing / tightening), growth (expansion / slowing / contraction), risk appetite (risk-on / risk-off). |
 | **Macro** | Full-history official series: rates & curve, inflation, labor, growth, financial conditions & liquidity, credit, housing & consumer. |
 | **Market** | Indices, volatility, rates & dollar, sector rotation heatmap, style/factor relative strength, commodities, bonds & credit. |
-| **Sentiment** | 0–100 gauge showing CNN's Fear & Greed index as-is (0 = extreme fear, 100 = extreme greed), with VIX as a context reading and automatic fallback if the CNN scrape is down. Full-history VIX vs Fear & Greed chart. |
-| **Granny Shots** | 7 themes vote on a curated universe; names hit by ≥2 themes form an equal-weight portfolio, rebalanced quarterly. Hit matrix, sector split, theme overlap, CSV export. |
-| **Seasonality** | Monthly / weekday / presidential-cycle patterns from ~100 years of S&P 500 history, with today's calendar position highlighted. |
+| **Sentiment** | CNN's Fear & Greed index with VIX. |
+| **Granny Shots** | 7 themes vote on a curated universe; names hit by ≥2 themes form an equal-weight portfolio, rebalanced quarterly. |
+| **Seasonality** | Monthly / presidential-cycle patterns. |
 
 ## Data architecture
 
