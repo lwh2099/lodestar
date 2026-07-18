@@ -7,6 +7,7 @@
 ![Plotly](https://img.shields.io/badge/Plotly-charts-3F4F75?logo=plotly&logoColor=white)
 ![Data](https://img.shields.io/badge/data-FRED%20%C2%B7%20Yahoo%20%C2%B7%20CNN-2AA597)
 ![No API keys](https://img.shields.io/badge/API%20keys-none-2478B8)
+![License](https://img.shields.io/badge/license-MIT-A83E66)
 
 ![Lodestar — Regime Compass](docs/screenshot.png)
 ![Lodestar — Regime Compass](docs/screenshot_2.png)
