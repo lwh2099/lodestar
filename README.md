@@ -12,7 +12,7 @@
 ![Lodestar — Regime Compass](docs/screenshot.png)
 ![Lodestar — Regime Compass](docs/screenshot_2.png)
 
-A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a contrarian sentiment thermometer, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only.
+A self-hosted macro + equity dashboard: real-time market internals layered on official historical macro series, a rule-based regime state machine, a Fear & Greed sentiment gauge, S&P 500 seasonality, and a Granny Shots multi-theme stock cross-section engine. Pure Python, free data sources only.
 
 ## Quick start
 
@@ -30,10 +30,10 @@ The first visit to each page downloads its data (FRED history can take
 
 | Page | What it answers |
 |---|---|
-| **Regime Compass** | Where are we in the cycle? Three regime pills (monetary / growth / risk), a one-line playbook, market snapshot, key macro prints. |
+| **Regime Compass** | Where are we in the cycle? Three rule-based regime tags — monetary (easing / tightening), growth (expansion / slowing / contraction), risk appetite (risk-on / risk-off) — plus a curve-inversion flag, rule-by-rule detail, and a historical trend of the composite scores. |
 | **Macro** | Full-history official series: rates & curve, inflation, labor, growth, financial conditions & liquidity, credit, housing & consumer. |
-| **Market** | Indices, volatility, sector rotation heatmap, style/factor relative strength, commodities, dollar, bonds. |
-| **Sentiment** | VIX + CNN Fear & Greed|
+| **Market** | Indices, volatility, rates & dollar, sector rotation heatmap, style/factor relative strength, commodities, bonds & credit. |
+| **Sentiment** | 0–100 gauge showing CNN's Fear & Greed index as-is (0 = extreme fear, 100 = extreme greed), with VIX as a context reading and automatic fallback if the CNN scrape is down. Full-history VIX vs Fear & Greed chart. |
 | **Granny Shots** | 7 themes vote on a curated universe; names hit by ≥2 themes form an equal-weight portfolio, rebalanced quarterly. Hit matrix, sector split, theme overlap, CSV export. |
 | **Seasonality** | Monthly / weekday / presidential-cycle patterns from ~100 years of S&P 500 history, with today's calendar position highlighted. |
 
@@ -53,8 +53,8 @@ page render  (a dead source falls back to the last cached copy,
 - **FRED** is fetched through the official key-less `fredgraph.csv` endpoint —
   no registration needed.
 - **Yahoo Finance / CNN** are best-effort sources: every call is
-  wrapped in retry + cache fallback. If one source is down the sentiment
-  thermometer automatically reweights around it.
+  wrapped in retry + cache fallback. If CNN is down the Sentiment gauge
+  automatically falls back to a VIX-derived reading.
 
 ### Updating data
 
@@ -73,7 +73,7 @@ page render  (a dead source falls back to the last cached copy,
 |---|---|
 | `config/series.yaml` | Which FRED series appear, their labels, units, YoY/level transform, cache TTL. Add a line → new chart on the Macro page. |
 | `config/themes.yaml` | Granny Shots theme constituents, sector pools, rebalance months. Edit lists → hit `↻ Refresh`. |
-| `config/thresholds.yaml` | Regime rule thresholds (NFCI, VIX, HY OAS, GDPNow bands) and sentiment weights. |
+| `config/thresholds.yaml` | Regime rule thresholds (NFCI, VIX, HY OAS, GDPNow bands) and the VIX floor/ceiling used for the sentiment fallback. |
 
 ## Project layout
 
@@ -86,7 +86,7 @@ lodestar/
 │   ├── cache.py            # SQLite three-stage cache (read → fetch → fallback)
 │   ├── fred.py             # FRED fetcher + series registry
 │   ├── market.py           # yfinance fetcher with retry/fallback
-│   ├── sentiment.py        # VIX / Fear & Greed + thermometer
+│   ├── sentiment.py        # CNN Fear & Greed gauge + VIX fallback
 │   ├── regime.py           # rule-based regime state machine
 │   ├── granny.py           # theme cross-section engine
 │   ├── seasonality.py      # S&P 500 seasonal statistics
